@@ -1,9 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();//Add Controllers to service
+builder.Services.AddControllers();//Add Controllers as service in the IServiceCollection.
 
 var app = builder.Build();
 
-app.MapControllers();//Enable map controller routing
+app.MapControllers();//Add alls action method as endpoints.
 
 app.Run();
