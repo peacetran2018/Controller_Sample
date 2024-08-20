@@ -69,8 +69,16 @@ public ContentResult Index(){
 }
 ```
 ### Output
-```HTML
-<h1>Hello World</h1>
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+  </body>
+</html>
 ```
   - Shortcut way, we can inheritant from Controller class then we can replace by Content("Content", "Content Type")
 ### Syntax
@@ -87,6 +95,14 @@ public class HomeController : Controller{
 }
 ```
 ### Output
-```HTML
-<h1>Hello World</h1>
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+  </body>
+</html>
 ```
