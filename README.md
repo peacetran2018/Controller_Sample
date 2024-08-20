@@ -69,17 +69,8 @@ public ContentResult Index(){
 }
 ```
 ### Output
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>This is a title</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
-</html>
-```
+# Hello World
+
   - Shortcut way, we can inheritant from Controller class then we can replace by Content("Content", "Content Type")
 ### Syntax
 ```C#
@@ -95,14 +86,4 @@ public class HomeController : Controller{
 }
 ```
 ### Output
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>This is a title</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
-</html>
-```
+# Hello World
