@@ -52,3 +52,41 @@ public class HomeController
     }
 }
 ```
+## 3. ContentResult
+  - ContentResult can represent any type of response, such as text/plain, text/html, application/pdf, application,json
+
+### Syntax
+```C#
+return ContentResult
+```
+### Usage
+```C#
+public ContentResult Index(){
+  return new ContentResult(){
+    Content = "<h1>Hello World</h1>",
+    ContentType = "text/html"
+  };
+}
+```
+### Output
+```HTML
+<h1>Hello World</h1>
+```
+  - Shortcut way, we can inheritant from Controller class then we can replace by Content("Content", "Content Type")
+### Syntax
+```C#
+return Content("Content", "Content Type");
+```
+
+### Usage
+```C#
+public class HomeController : Controller{
+  public ContentResult Indext(){
+    return Content("<h1>Hello World</h1>", "text/html");
+  }
+}
+```
+### Output
+```HTML
+<h1>Hello World</h1>
+```
