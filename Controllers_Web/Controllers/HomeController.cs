@@ -1,3 +1,4 @@
+using Controllers_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers_Web.Controllers;
@@ -5,7 +6,8 @@ namespace Controllers_Web.Controllers;
 public class HomeController : Controller
 {
     [Route("/")]
-    public ContentResult Index(){
+    public ContentResult Index()
+    {
         //return "Hello from Home screen";
         // return new ContentResult() {
         //     Content = "<h1>Hello from home screen</h1>",
@@ -16,12 +18,28 @@ public class HomeController : Controller
     }
 
     [Route("about")]
-    public string About(){
+    public string About()
+    {
         return "Hello from About screen";
     }
 
     [Route("contact-us/{mobile:regex(^\\d{{10}}$)}")]
-    public string Contact(int mobile){
+    public string Contact(int mobile)
+    {
         return $"Hello from Contact us Screen with number {mobile}";
+    }
+
+    [Route("person")]
+    public JsonResult Person()
+    {
+        Person person = new Person(){
+            Id = Guid.NewGuid(),
+            FirstName = "Peace",
+            LastName = "Tran",
+            Age = 34
+        };
+        //return new JsonResult(person);
+        return Json(person);
+        //return "{\"Key\":\"Value\"}";
     }
 }
