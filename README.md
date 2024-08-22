@@ -87,3 +87,66 @@ public class HomeController : Controller{
 ```
 ### Output
 # Hello World
+
+## 4. FileResults
+  - There are 3 types of FileResults: VirtualFileResult, PhysicalFileResult and FileContentResult.
+
+### Syntax
+```C#
+  return new VirtualFileResult("File relative path", "Content type");
+  return new PhysicalFileResult("File Absolute path", "Content type");
+  return new FileContentResult(byte_array, "Content type");
+```
+
+### Usage
+```C#
+  //program.cs
+  ...
+  app.UseStaticFiles();//enable static files - default folder name wwwroot
+  ...
+
+  //homecontroller.cs
+  [Route("file-download")]
+    public VirtualFileResult FileDownload(){
+        return new VirtualFileResult("/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download2")]
+    public PhysicalFileResult FileDownload2(){
+        return new PhysicalFileResult("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download3")]
+    public FileContentResult FileDownload3(){
+        byte[] bytes = System.IO.File.ReadAllBytes("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf");
+        return new FileContentResult(bytes, "application/pdf");
+    }
+```
+  - Shorter way
+
+### Syntax
+```C#
+  //For virtual content result and file content result
+  return File("File relative path in wwwroot folder", "Content Type");
+  //For physical content result
+  return PhysicalFile("File absolute path", "Content Type")
+```
+
+### Usage
+```C#
+  [Route("file-download")]
+    public VirtualFileResult FileDownload(){
+        return File("/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download2")]
+    public PhysicalFileResult FileDownload2(){
+        return PhysicalFile("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download3")]
+    public FileContentResult FileDownload3(){
+        byte[] bytes = System.IO.File.ReadAllBytes("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf");
+        return File(bytes, "application/pdf");
+    }
+```

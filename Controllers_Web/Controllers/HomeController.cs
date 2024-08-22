@@ -42,4 +42,23 @@ public class HomeController : Controller
         return Json(person);
         //return "{\"Key\":\"Value\"}";
     }
+
+    [Route("file-download")]
+    public VirtualFileResult FileDownload(){
+        //return new VirtualFileResult("/sample.pdf", "application/pdf");
+        return File("/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download2")]
+    public PhysicalFileResult FileDownload2(){
+        //return new PhysicalFileResult("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf", "application/pdf");
+        return PhysicalFile("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf", "application/pdf");
+    }
+
+    [Route("file-download3")]
+    public FileContentResult FileDownload3(){
+        byte[] bytes = System.IO.File.ReadAllBytes("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf");
+        //return new FileContentResult(bytes, "application/pdf");
+        return File(bytes, "application/pdf");
+    }
 }
