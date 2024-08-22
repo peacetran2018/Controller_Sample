@@ -87,8 +87,57 @@ public class HomeController : Controller{
 ```
 ### Output
 # Hello World
+## 4. JsonResult
+  - JsonResult can represent an object in Javascript Object Notation (JSON) Format.
 
-## 4. FileResults
+### Syntax
+```C#
+  return JsonResult
+```
+
+### Usage
+```C#
+  public JsonResult Person()
+  {
+      Person person = new Person(){
+          Id = Guid.NewGuid(),
+          FirstName = "Peace",
+          LastName = "Tran",
+          Age = 34
+      };
+      return new JsonResult(person);
+  }
+```
+  - Shorter way
+
+### Syntax
+```C#
+  return Json
+```
+
+### Usage
+```C#
+  public JsonResult Person()
+  {
+      Person person = new Person(){
+          Id = Guid.NewGuid(),
+          FirstName = "Peace",
+          LastName = "Tran",
+          Age = 34
+      };
+      return Json(person);
+  }
+```
+### Output
+```JSON
+  {
+    Id = xxxxxxxxxxxx,
+    FirstName = "Peace",
+    LastName = "Tran",
+    Age = 34
+  }
+```
+## 5. FileResults
   - There are 3 types of FileResults: VirtualFileResult, PhysicalFileResult and FileContentResult.
 
 ### Syntax
