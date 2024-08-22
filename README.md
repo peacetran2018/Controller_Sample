@@ -197,5 +197,5 @@ public class HomeController : Controller{
     public FileContentResult FileDownload3(){
         byte[] bytes = System.IO.File.ReadAllBytes("/Volumes/Peace_SSD/learning/dotnet/Controller_Sample/Controllers_Web/wwwroot/sample.pdf");
         return File(bytes, "application/pdf");
-    }
+    } 
 ```
