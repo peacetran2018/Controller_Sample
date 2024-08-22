@@ -199,3 +199,47 @@ public class HomeController : Controller{
         return File(bytes, "application/pdf");
     } 
 ```
+## 6. IActionResult
+  - It is the parent interface for all action result classes such as ContentResult,JsonResult, RediectResult, StatusCodeResult, ViewResult etc.
+  - By mentioning the return type as IActionResult, you can return either of the subtypes of IActionResult.
+  
+### Syntax
+```C#
+  public IActionResult Index(){
+    if(condition){
+      return Content("");
+    }
+    if(condition){
+      return Json(OBJECT);
+    }
+    return File("File Path", "Content Type");
+  }
+```
+### Usage
+```C#
+    [Route("/")]
+    public IActionResult Index(){
+        //IActionResult can be used for all return action methods in same method
+        if(!Request.Query.ContainsKey("bookid")){
+            Response.StatusCode = 400;
+            return Content("Book ID is not supplied");
+        }
+
+        if(string.IsNullOrEmpty(Convert.ToString(Request.Query["bookid"]))){
+            Response.StatusCode = 400;
+            return Content("Book ID cannot be blank");
+        }
+
+        int bookid = Convert.ToInt32(Request.Query["bookid"]);
+        if(bookid < 0){
+            Response.StatusCode = 400;
+            return Content("Book ID cannot be less than 0");
+        }
+        if(bookid > 1000){
+            Response.StatusCode = 400;
+            return Content("Book ID cannot be greater than 1000");
+        }
+        Response.StatusCode = 200;
+        return File("/sample.pdf", "application/pdf");
+    }
+```

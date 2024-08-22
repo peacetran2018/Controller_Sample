@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers_Web", "Controllers_Web\Controllers_Web.csproj", "{7ACA5383-ED6C-4DBA-83F9-3B5DB31FA295}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IActionResult_Web", "IActionResult_Web\IActionResult_Web.csproj", "{8510ABE7-3705-444A-A8C6-8A026D76007B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7ACA5383-ED6C-4DBA-83F9-3B5DB31FA295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ACA5383-ED6C-4DBA-83F9-3B5DB31FA295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ACA5383-ED6C-4DBA-83F9-3B5DB31FA295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8510ABE7-3705-444A-A8C6-8A026D76007B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8510ABE7-3705-444A-A8C6-8A026D76007B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8510ABE7-3705-444A-A8C6-8A026D76007B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8510ABE7-3705-444A-A8C6-8A026D76007B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
