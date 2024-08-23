@@ -243,3 +243,43 @@ public class HomeController : Controller{
         return File("/sample.pdf", "application/pdf");
     }
 ```
+## 7. Status Code Result
+  - To send an empty response with specified status code
+
+### Syntax
+```C#
+  return Status Code Result;
+
+  //Status Code Result
+  return new StatusCodeResult(status_code);
+  //UnauthorizedResult
+  return new UnauthorizedResult();
+  //BadRequestResult
+  return new BadRequestResult();
+  //NotFoundResult
+  return new NotFoundResult();
+```
+
+### Usage
+```C#
+  //Manual way
+  public IActionResult Index(){
+    if(condition){
+      Response.StatusCode = 400;
+      return Content("Error message");
+    }
+  }
+
+  //Using StatusCodeResult
+  public IActionResult Index(){
+    if(condition){
+      return new BadRequestResult();
+    }
+  }
+  //Using Helper methods
+  public IActionResult Index(){
+    if(condition){
+      return BadRequestResult("Error message");
+    }
+  }
+```
