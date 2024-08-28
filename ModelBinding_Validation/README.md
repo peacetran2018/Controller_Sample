@@ -10,7 +10,7 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
 ### Query String
 ```C#
     //?param1=value1&param2=value2
-    [Route("store/book)]
+    [Route("store/book")]
     public IActionResult Index(int? bookid){     
         if(bookid.HasValue == false){
             return Content("Book ID is not supplied or blank");
