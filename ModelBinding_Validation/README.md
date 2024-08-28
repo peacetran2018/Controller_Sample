@@ -1,5 +1,5 @@
 ## 1.Model Binding
-    - Model binding is a feature of asp.net core that reads values from http requests and pass them as arguments to the action method.
+- Model binding is a feature of asp.net core that reads values from http requests and pass them as arguments to the action method.
 
 ```Text
 HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data, Query String parameters) => Controler
