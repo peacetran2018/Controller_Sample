@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IActionResult_Web", "IActio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp_Web", "BankingApp_Web\BankingApp_Web.csproj", "{4091075B-4690-4E05-9B6E-A925DF543120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelBinding_Validation", "ModelBinding_Validation\ModelBinding_Validation.csproj", "{D4EDBB23-A20D-4B01-B46B-49C30BF70BBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{4091075B-4690-4E05-9B6E-A925DF543120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4091075B-4690-4E05-9B6E-A925DF543120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4091075B-4690-4E05-9B6E-A925DF543120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4EDBB23-A20D-4B01-B46B-49C30BF70BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4EDBB23-A20D-4B01-B46B-49C30BF70BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4EDBB23-A20D-4B01-B46B-49C30BF70BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4EDBB23-A20D-4B01-B46B-49C30BF70BBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
