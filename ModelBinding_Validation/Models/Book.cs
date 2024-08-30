@@ -8,7 +8,7 @@ namespace ModelBinding_Validation.Models
 {
     public class Book
     {
-        [FromQuery]
+        //[FromQuery]
         public int? BookId { get; set; }
         public string? Author { get; set; }
 

@@ -113,3 +113,13 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
         return Content($"Book id { book.id }");
     }
 ```
+
+## 5. Form-urlencoded VS Form-data
+    - Basically, those request body are same but form-data can attach the file
+
+### Syntax
+```JQuery
+    Content-type: application/x-www-form-urlencoded
+
+    Content-type: multipart/form-data
+```

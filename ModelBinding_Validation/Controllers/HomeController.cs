@@ -12,7 +12,7 @@ namespace ModelBinding_Validation.Controllers
     public class HomeController : Controller
     {
         [Route("bookstore/{bookid?}/{isloggedin?}")]//it is called route parameters 
-        public IActionResult Index([FromQuery]int? bookid, [FromRoute]bool? isloggedin, Book book)
+        public IActionResult Index(int? bookid, [FromRoute]bool? isloggedin, Book book)
         {
             if (bookid.HasValue == false)
             {
