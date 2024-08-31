@@ -33,3 +33,93 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
         return RedirectToAction("Store", "Book", new { id = bookid });
     }
 ```
+## 3. FromQuery VS FromRoute
+    - FromQuery and FromRoute are a specific priority to get the value from QueryString First or from RouteData first.
+  
+### [FromQuery]
+```C#
+    //Gets the value from query string only
+    public IActionResult Index([FromQuery] type parameter){
+
+    }
+```
+
+### [FromRoute]
+```C#
+    //Gets the value from route data only
+    public IActionResult Index([FromRoute] type parameter){
+
+    }
+```
+
+## 4. Model Class
+    - is a class represents structure of data (as properties) that you would like to receive from the request and/or send to the response.
+  
+### Sample
+```C#
+    //Model Class
+    public class BookModel{
+        public int bookid {get;set;}
+        public string author {get;set;}
+    }
+
+    //Controller
+    public IActionResult Index(BookModel book){//priority from route data
+        return Content($"Book id { book.id }");
+    }
+```
+    - To specific from route data by class we do same as lession 3
+### [FromQuery]
+```C#
+    //Model Class
+    public class BookModel{
+        public int bookid {get;set;}
+        public string author {get;set;}
+    }
+
+    //Controller
+    public IActionResult Index([FromQuery] BookModel book){//specific class get value from query string
+        return Content($"Book id { book.id }");
+    }
+```
+
+### [FromRoute]
+```C#
+    //Model Class
+    public class BookModel{
+        public int bookid {get;set;}
+        public string author {get;set;}
+    }
+
+    //Controller
+    public IActionResult Index([FromRoute] BookModel book){//specific class get value from route data
+        return Content($"Book id { book.id }");
+    }
+```
+    - We also can specific FromQuery or FromRoute for each properties. if we use specific from query or from route then the parameter from controller no need add specfic [FromQuery] or [FromRoute]
+
+### [FromQuery] [FromRoute] for properties
+```C#
+    //Model Class
+    public class BookModel{
+        [FromQuery]
+        public int bookid {get;set;}
+        [FromRoute]
+        public string author {get;set;}
+    }
+
+    //Controller
+    public IActionResult Index(BookModel book){//no need specific to get value from where
+        return Content($"Book id { book.id }");
+    }
+```
+
+## 5. Form-urlencoded VS Form-data
+    - Basically, those request body are same but form-data can attach the file
+
+### Syntax
+```JQuery
+    Content-type: application/x-www-form-urlencoded
+
+    Content-type: multipart/form-data
+```
