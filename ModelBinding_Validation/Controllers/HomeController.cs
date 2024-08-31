@@ -5,13 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ModelBinding_Validation.Models;
 
 namespace ModelBinding_Validation.Controllers
 {
     public class HomeController : Controller
     {
         [Route("bookstore/{bookid?}/{isloggedin?}")]//it is called route parameters 
-        public IActionResult Index(int? bookid, bool? isloggedin)
+        public IActionResult Index(int? bookid, [FromRoute]bool? isloggedin, Book book)
         {
             if (bookid.HasValue == false)
             {
@@ -31,7 +32,9 @@ namespace ModelBinding_Validation.Controllers
             {
                 return StatusCode(401);
             }
-            return RedirectToAction("Books", "Store", new { id = bookid });
+
+            //return RedirectToAction("Books", "Store", new { id = bookid });
+            return Content($"Book information {book.ToString()}");
         }
     }
 }
