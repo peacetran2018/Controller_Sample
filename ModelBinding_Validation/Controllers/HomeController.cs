@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ModelBinding_Validation.Models;
+using ModelValidations.Models;
 
 namespace ModelBinding_Validation.Controllers
 {
@@ -35,6 +36,26 @@ namespace ModelBinding_Validation.Controllers
 
             //return RedirectToAction("Books", "Store", new { id = bookid });
             return Content($"Book information {book.ToString()}");
+        }
+
+        [Route("register")]
+        public IActionResult Register(Person person)
+        {
+            if(!ModelState.IsValid){
+                // List<string> errors = new List<string>();
+                // foreach(var value in ModelState.Values){
+                //     foreach(var error in value.Errors){
+                //         errors.Add(error.ErrorMessage);
+                //     }
+                // }
+                // var errorString = string.Join("\n", errors);
+                // return BadRequest(errorString);
+                
+                List<string> errors = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+                var errorString = string.Join("\n", errors);
+                return BadRequest(errorString);
+            }
+            return Content($"{person.ToString()}");
         }
     }
 }
