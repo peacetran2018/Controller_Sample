@@ -123,3 +123,53 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
 
     Content-type: multipart/form-data
 ```
+
+## 6. Model State
+    - There are 3 types:
+      - IsValid: Specifics whether there is at least one validation error or not (true or false).
+      - Values: Contains each model property value with corresponding "Errors" property that contains list of validation errors of that model property.
+      - ErrorCount: Returns number of errors.
+
+### Sample
+```C#
+    //Person model class
+    public class Person
+    {
+        //Validate PersonName cannot but NULL or BLANK
+        //To custom error message Required(ErrorMessage = "Message")
+        [Required(ErrorMessage = "Person Name cannot be NULL or BLANK")]
+        public string? PersonName { get; set; }
+        public string? Email {get; set; }
+        public string? Phone { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
+        public double? Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"Person object - Person Name: {PersonName}, Email: {Email}, Phone: {Phone}, Password: {Password}, Confirm Password: {ConfirmPassword}, Price: {Price}";
+        }
+    }
+
+    //HomeController
+    public IActionResult Index(Person person)
+        {
+            if(!ModelState.IsValid){
+                // Using foreach to loop to get ModelState Values and Errors String
+                // List<string> errors = new List<string>();
+                // foreach(var value in ModelState.Values){
+                //     foreach(var error in value.Errors){
+                //         errors.Add(error.ErrorMessage);
+                //     }
+                // }
+                // var errorString = string.Join("\n", errors);
+                // return BadRequest(errorString);
+                
+                // Using LINQ to get ModelState Values and Errors String
+                List<string> errors = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+                var errorString = string.Join("\n", errors);
+                return BadRequest(errorString);
+            }
+            return Content($"{person.ToString()}");
+        }
+```
