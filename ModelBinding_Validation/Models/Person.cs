@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ModelBinding_Validation.CustomValidators;
 
 namespace ModelValidations.Models
 {
@@ -32,6 +33,17 @@ namespace ModelValidations.Models
         public string? ConfirmPassword { get; set; }
         [Range(0, 999.99, ErrorMessage = "{0} cannot out of range between {1} to {2}")]
         public double? Price { get; set; }
+
+        //[MinimumYearValidation(18, ErrorMessage = "Date Of Birth at least {0}")]
+        [MinimumYearValidation(18)]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Display(Name = "From Date")]
+        public DateTime? FromDate {get; set; }
+
+        [DateRangeValidator("FromDate", ErrorMessage = "'From Date' should be older than or equal to 'To Date'" )]
+        [Display(Name = "To Date")]
+        public DateTime? ToDate {get; set; }
 
         public override string ToString()
         {
