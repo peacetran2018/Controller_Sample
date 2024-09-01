@@ -229,3 +229,58 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
         }
     }
 ```
+
+## 8. Custom Validation with multiple object
+
+### Sample
+```C#
+    public class DateRangeValidatorAttribute : ValidationAttribute
+    {
+        public string OtherPropertyName { get; set; }
+        public DateRangeValidatorAttribute(string otherPropertyName){
+            OtherPropertyName = otherPropertyName;
+        }
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            if(value != null){
+                //Get to_date
+                DateTime to_date = Convert.ToDateTime(value);
+
+                //Get preference from property from_date
+                PropertyInfo? otherProperty = validationContext.ObjectType.GetProperty(OtherPropertyName);
+
+                if(otherProperty != null){
+                    DateTime from_date = Convert.ToDateTime(otherProperty.GetValue(validationContext.ObjectInstance));
+                    if(from_date > to_date){
+                        return new ValidationResult(ErrorMessage);
+                    }
+                    else{
+                        return ValidationResult.Success;
+                    }
+                }
+            }
+            return null;
+        }
+    }
+```
+
+### Usage
+```C#
+    [DateRangeValidator("FromDate", ErrorMessage = "'From Date' should be older than or equal to 'To Date'")]
+    [Display(Name = "To Date")]
+    public DateTime? ToDate { get; set; }
+```
+
+## 9. IValidatableObject
+
+### Syntax
+```C#
+    class ClassName: IValidatableObject{
+        //model properties here
+        public IEnumrable<ValidationResult> Validate(ValidationContext validationContext){
+            if(condition){
+                yield return new ValidationResult("Error Message");
+            }
+        }
+    }
+```
