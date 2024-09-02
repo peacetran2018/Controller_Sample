@@ -284,3 +284,21 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
         }
     }
 ```
+
+## 10. Bind VS BindNever
+    - Bind is passing data to specific attribute of a model class
+    - BindNever is no pass data to specific attribute of a model class
+  
+### Sample
+```C#
+    //Bind
+    [Route("register")]
+    public IActionResult Register([Bind(nameof(Person.PersonName), nameof(Person.Email), nameof(Person.Password), nameof(Person.ConfirmPassword))]Person person)
+    {
+        //...logic
+    }
+
+    //BindNever
+    [BindNever]
+    public DateTime? DateOfBirth { get; set; }
+```

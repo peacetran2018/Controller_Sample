@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ModelBinding_Validation.CustomValidators;
 
 namespace ModelValidations.Models
@@ -36,6 +37,7 @@ namespace ModelValidations.Models
 
         //[MinimumYearValidation(18, ErrorMessage = "Date Of Birth at least {0}")]
         [MinimumYearValidation(18)]
+        [BindNever]
         public DateTime? DateOfBirth { get; set; }
 
         [Display(Name = "From Date")]
