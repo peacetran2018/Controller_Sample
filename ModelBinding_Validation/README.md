@@ -302,3 +302,25 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
     [BindNever]
     public DateTime? DateOfBirth { get; set; }
 ```
+
+## 11. FromBody
+    - To pass JSON data to model class in asp.net core has keyword [FromBody] same as [FromQuery] or [FromRoute]
+
+### Sample
+```JSON
+    {
+        "PersonName": "Peace",
+        "Email": "Email@gmail.com"
+    }
+```
+```C#
+    public IActionResult Register([FromBody]Person person)
+    {
+        return Content($"Person Name: {person.PersonName} and Email: {person.Email}");
+    }
+```
+
+### Output
+```Text
+    Person Name: Peace and Email: Email@gmail.com
+```
