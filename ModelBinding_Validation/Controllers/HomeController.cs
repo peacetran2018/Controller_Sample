@@ -40,7 +40,7 @@ namespace ModelBinding_Validation.Controllers
 
         [Route("register")]
         //public IActionResult Register([Bind(nameof(Person.PersonName), nameof(Person.Email), nameof(Person.Password), nameof(Person.ConfirmPassword))]Person person)
-        public IActionResult Register([FromBody]Person person)
+        public IActionResult Register([FromBody] Person person)
         {
             if(!ModelState.IsValid){
                 // List<string> errors = new List<string>();

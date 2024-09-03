@@ -324,3 +324,22 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
 ```Text
     Person Name: Peace and Email: Email@gmail.com
 ```
+
+## 12. Input Formatters
+
+### Configure
+```C#
+    //program.cs
+    //Enable Xml SerializerFormatter
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Services.AddControllers();
+    //to controller understand XML format
+    builder.Services.AddControllers().AddXmlSerializerFormatters();
+    var app = builder.Build();
+
+    app.UseStaticFiles();
+    app.UseRouting();
+    app.MapControllers();
+
+    app.Run();
+```
