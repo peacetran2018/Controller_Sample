@@ -343,3 +343,90 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
 
     app.Run();
 ```
+## 13. Custom Model Binder
+    - In case, if our model don't have First Name and Last Name but has Full Name.
+    - Which is parameters from API doesn't has First Name and Last Name. So we need custom model binder
+
+### Sample
+```C#
+    public class PersonModelBinder : IModelBinder
+    {
+        public Task BindModelAsync(ModelBindingContext bindingContext)
+        {
+            Person person = new Person();
+            //Fist Name and Last Name
+            if(bindingContext.ValueProvider.GetValue("FirstName").Length > 0){
+                person.PersonName = bindingContext.ValueProvider.GetValue("FirstName").FirstValue;
+                if(bindingContext.ValueProvider.GetValue("LastName").Length > 0){
+                    person.PersonName += " " + bindingContext.ValueProvider.GetValue("LastName").FirstValue;
+                }
+            }
+            //Email
+            if(bindingContext.ValueProvider.GetValue("Email").Length > 0){  
+                person.Email = bindingContext.ValueProvider.GetValue("Email").FirstValue;
+            }
+
+            //Phone
+            if(bindingContext.ValueProvider.GetValue("Phone").Length > 0){  
+                person.Phone = bindingContext.ValueProvider.GetValue("Phone").FirstValue;
+            }
+
+            //Password
+            if(bindingContext.ValueProvider.GetValue("Password").Length > 0){  
+                person.Password = bindingContext.ValueProvider.GetValue("Password").FirstValue;
+            }
+
+            //ConfirmPassword
+            if(bindingContext.ValueProvider.GetValue("ConfirmPassword").Length > 0){  
+                person.ConfirmPassword = bindingContext.ValueProvider.GetValue("ConfirmPassword").FirstValue;
+            }
+
+            //Price
+            if(bindingContext.ValueProvider.GetValue("Price").Length > 0){  
+                person.Price = Convert.ToDouble(bindingContext.ValueProvider.GetValue("Price").FirstValue);
+            }
+
+            //DOB
+            if(bindingContext.ValueProvider.GetValue("DateOfBirth").Length > 0){  
+                person.DateOfBirth = Convert.ToDateTime(bindingContext.ValueProvider.GetValue("DateOfBirth").FirstValue);
+            }
+
+            //Returns model object after reading data from the request
+            bindingContext.Result = ModelBindingResult.Success(person);
+            return Task.CompletedTask;
+        }
+    }
+```
+
+### Usage
+```C#
+    public IActionResult Register([FromBody] [ModelBinder(BinderType = typeof(PersonModelBinder))] Person person){
+        //logic
+    }
+```
+
+## 14. Custom Model binder provider
+
+### Configure
+```C#
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Services.AddControllers(options => {
+        options.ModelBinderProviders.Insert(0, new PersonBinderProvider());//Add this binder provider to service controllers
+        //index 0 is first place
+    });
+```
+
+### Create Binder Provider
+```C#
+    public class PersonBinderProvider : IModelBinderProvider
+    {
+        //This Binder Provider will be called only 1 time when the first program running
+        //Next time onwards will not call anymore.
+        public IModelBinder? GetBinder(ModelBinderProviderContext context){
+            if(context.Metadata.ModelType == typeof(Person)){
+                return new BinderTypeModelBinder(typeof(PersonModelBinder));
+            }
+            return null;
+        }
+    }
+```

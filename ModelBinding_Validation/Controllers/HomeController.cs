@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ModelBinding_Validation.CustomModelBinder;
 using ModelBinding_Validation.Models;
 using ModelValidations.Models;
 
@@ -40,7 +41,8 @@ namespace ModelBinding_Validation.Controllers
 
         [Route("register")]
         //public IActionResult Register([Bind(nameof(Person.PersonName), nameof(Person.Email), nameof(Person.Password), nameof(Person.ConfirmPassword))]Person person)
-        public IActionResult Register([FromBody] Person person)
+        //public IActionResult Register([FromBody] [ModelBinder(BinderType = typeof(PersonModelBinder))] Person person)
+        public IActionResult Register(Person person)
         {
             if(!ModelState.IsValid){
                 // List<string> errors = new List<string>();

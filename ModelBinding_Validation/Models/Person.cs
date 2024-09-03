@@ -37,7 +37,7 @@ namespace ModelValidations.Models
 
         //[MinimumYearValidation(18, ErrorMessage = "Date Of Birth at least {0}")]
         [MinimumYearValidation(18)]
-        [BindNever]
+        //[BindNever]
         public DateTime? DateOfBirth { get; set; }
 
         [Display(Name = "From Date")]
