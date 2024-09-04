@@ -430,3 +430,29 @@ HTTP Request => Routing => Model Binding (Form Fields, Request body, Route Data,
         }
     }
 ```
+
+## 15. Collection binding
+    - Passing data to a list collection in model
+
+### Sample
+```C#
+    //Person.cs
+    //...
+    public List<string?> Tags{ get; set; } = new List<string?>();
+    //...
+```
+
+### Usage
+```JSON
+    //From request body
+    {
+        "PersonName":"Peace",
+        "Email":"peacetran@gmail.com",
+        "Phone": "123111",
+        "Password": "1234",
+        "ConfirmPassword": "1234",
+        "DateOfBirth": "1992-06-18",
+        "Price": 11.5,
+        "Tags": ["#dotnet","#CSharp"]
+    }
+```

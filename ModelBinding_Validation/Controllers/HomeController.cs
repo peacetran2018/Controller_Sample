@@ -42,7 +42,7 @@ namespace ModelBinding_Validation.Controllers
         [Route("register")]
         //public IActionResult Register([Bind(nameof(Person.PersonName), nameof(Person.Email), nameof(Person.Password), nameof(Person.ConfirmPassword))]Person person)
         //public IActionResult Register([FromBody] [ModelBinder(BinderType = typeof(PersonModelBinder))] Person person)
-        public IActionResult Register(Person person)
+        public IActionResult Register([FromBody] Person person, [FromHeader(Name = "User-Agent")] string userAgent)
         {
             if(!ModelState.IsValid){
                 // List<string> errors = new List<string>();
@@ -58,7 +58,7 @@ namespace ModelBinding_Validation.Controllers
                 var errorString = string.Join("\n", errors);
                 return BadRequest(errorString);
             }
-            return Content($"{person.ToString()}");
+            return Content($"{person.ToString()}, {userAgent}");
         }
     }
 }
